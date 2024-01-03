@@ -3,7 +3,7 @@ const hours = document.getElementById("hours");
 const mins = document.getElementById("mins");
 const seconds = document.getElementById("seconds");
 
-const newYear = '1 Jan 2024';
+const newYear = '1 Jan 2025';
 
 function countTimer(){
     const newYearDate = new Date(newYear);
@@ -26,3 +26,32 @@ function countTimer(){
 
 countTimer()
 setInterval(countTimer, 1000);//EJECUTA EL METODO CADA SEGUNDO
+
+//CREAR SELECTORES
+
+const notificarBtn = document.querySelector('#notificar');
+//AÑADIMOS LISTENER 
+notificarBtn.addEventListener('click', () => {
+    //PROMISE, RESULEVE CON THEN
+    //Notification (ES UN OBJETO)
+    Notification.requestPermission().then(resultado => {
+        console.log('Respuesta: ', resultado);
+    })
+});
+
+verNotificacion.addEventListener('click', () => {
+    if (Notification.permission === 'granted') {
+        // MOSTRAR NOTIFICACION
+        const notificacion = new Notification('ESTO ES LA NOTIFICACION', {
+            icon: './CapturaTimer.png',
+            body: 'Tutoriales de js',
+        });
+
+        console.log('SHOW NOTIDF');
+        notificacion.onclick = function () {
+            window.open('https://google.com');
+        };
+    }
+});
+
+
